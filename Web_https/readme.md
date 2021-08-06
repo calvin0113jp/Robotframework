@@ -9,7 +9,7 @@
   	#### 1. Download and install python
 	#### 2. Update google chrome to the latest virsion (91.0.4472.164)
 	#### 3. Put chromedriver into python directory
-		`c:\Python39\`
+	`c:\Python39\`
 + ### Package
 	#### 1. pip install robotframework
 	`pip install robotframework`
