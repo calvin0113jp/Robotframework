@@ -23,5 +23,6 @@
 
 * ### Run
 	`start.bat`
-
+	
+	<img src="./record.gif" style="zoom:100%" />
 
