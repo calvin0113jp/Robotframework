@@ -1,9 +1,10 @@
-﻿* ### About the Project
+* ### About the Project
 
 	Veirfy the web service
 
 ---
 * ### Getting Started
+	### Windows 10
 
 + ### Installation
   	#### 1. Download and install python
