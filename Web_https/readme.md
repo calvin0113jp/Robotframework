@@ -4,7 +4,7 @@
 
 ---
 * ### Getting Started
-	### Windows 10
+	#### Windows 10
 
 + ### Installation
   	#### 1. Download and install python
