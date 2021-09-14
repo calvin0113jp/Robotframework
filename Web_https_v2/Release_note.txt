@@ -1,0 +1,8 @@
+Update history
+
+-------------------------------------------------------------
+20210721 - start.bat - AT-GS950 - verify https login issue
+
+-------------------------------------------------------------
+
+20210913 - start2.bat - Apresia - verify https login issue
