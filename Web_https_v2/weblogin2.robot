@@ -10,10 +10,10 @@ Test Teardown     close all browsers
 *** Variables ***
 # Apresia GS110GT-SS
 
-${dut_ip}    10.3.4.19
+${dut_ip}    10.3.4.10
 ${User_value}  adpro
 ${Password_value}
-${loop_times}    30
+${loop_times}    5
 
 
 
@@ -24,7 +24,7 @@ ${BROWSER}  Chrome
 ${User_xpath}    //input[@id='Login']
 ${Password_xpath}    //input[@id='Password']
 ${login_button}    //button[@id='login_ok']
-${logout}    //*[@id="logout"]
+${logout}    //span[@id='logout']
 
 ${systemUP}    //*[@id="content"]/div/div[2]/table/tbody/tr[2]/td[1]/span
 ${systeminfo_failed_H001}    //*[@id="content"]/div/div[2]/table/tbody/tr[1]/td/b/kv
@@ -43,6 +43,8 @@ ${message4}    FAILED , Issue3 : DUT cannot reply Ping , Maybe system crashed or
 create new browser
     Open Browser    ${url}    ${BROWSER}    options=add_argument("--ignore-certificate-errors")
     Set Selenium Implicit Wait    10
+    ${handles}=    Get Window Handles
+    [Return]    ${handles}    
 
 login to dut
     Go To    ${url}
@@ -58,7 +60,15 @@ login to dut
     ${alert_message}=    Handle Alert    action=ACCEPT    timeout=10
     ${status}=    Run Keyword And Return Status    Wait Until Element Is Visible    myframe
     [Return]    ${status}    ${alert_message}
-        
+
+logout to dut
+    sleep    3
+    Click Element    ${logout}
+    ${alert_message}=    Handle Alert    action=ACCEPT    timeout=10
+    ${status}=    Run Keyword And Return Status    Wait Until Element Is Visible    ${User_xpath}
+    sleep    3
+    [Return]    ${status}
+
 check login successed
     Select frame    myframe 
     ${IsElementVisible}=  Run Keyword And Return Status    Wait Until Page Contains Element   ${systemUP}
@@ -98,7 +108,7 @@ Ping test
 
 Valid Login
     [Documentation]     Test Login behavior
-    create new browser
+    ${handles}=    create new browser
     # FOR    ${index}    IN RANGE    1    ${loop_times} + 1
     FOR    ${i}    IN RANGE    1    999999
         Log to console    Running for ${i} times
@@ -112,7 +122,9 @@ Valid Login
                 ${result} =    check login successed
                 Set Suite Variable    ${write_result}    Running for ${i} times : ${result}[1]    
                 write result to file
-                sleep    3        
+                Switch Window    ${handles}[0]
+                sleep    1
+                logout to dut        
             ELSE 
                 Log to console    Unable to login to system page , skip the test   
             END
@@ -127,10 +139,6 @@ Valid Login
         Exit For Loop If    ${counter} > ${loop_times}
     END
     Log to console    End the Testing
-    
-
-    
-    
     
 
     
