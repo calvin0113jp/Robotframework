@@ -3,6 +3,7 @@
 	Verify the web service with https
 	
 	1.Add three situatin of verification
+	
 	2.Add new switch
 ---
 * ### Getting Started
@@ -26,6 +27,4 @@
 	
 * ### Run
 	`start2.bat`
-	
-	<img src="./record.gif" style="zoom:100%" />
 
